@@ -79,7 +79,13 @@ namespace App4b_Illia_Karmazin_
                 }
                 else
                 {
-                    Program.full = Program.left + "-" + Program.current;
+                    if (Program.minus_status == false)
+                    {
+                        Program.full = Program.current;
+                        Program.minus_status = true;
+                    }
+                    else
+                        Program.full = Program.left + "-" + Program.current;
                     label2.Text = label1.Text + " - ";
                     double result;
                     DataTable table = new DataTable();
