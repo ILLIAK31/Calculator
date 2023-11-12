@@ -8,6 +8,8 @@ namespace App4b_Illia_Karmazin_
 {
     internal static class Program
     {
+        public static string left = "0", current = "" , full = "";
+        public static bool status = false;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

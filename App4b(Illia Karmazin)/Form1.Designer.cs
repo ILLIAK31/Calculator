@@ -55,6 +55,11 @@
             button24 = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            label7 = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // button1
@@ -146,6 +151,7 @@
             button9.TabIndex = 8;
             button9.Text = "7";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
             // button10
             // 
@@ -156,6 +162,7 @@
             button10.TabIndex = 9;
             button10.Text = "8";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // button11
             // 
@@ -166,6 +173,7 @@
             button11.TabIndex = 10;
             button11.Text = "9";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // button12
             // 
@@ -186,6 +194,7 @@
             button13.TabIndex = 12;
             button13.Text = "4";
             button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // button14
             // 
@@ -196,6 +205,7 @@
             button14.TabIndex = 13;
             button14.Text = "5";
             button14.UseVisualStyleBackColor = true;
+            button14.Click += button14_Click;
             // 
             // button15
             // 
@@ -206,6 +216,7 @@
             button15.TabIndex = 14;
             button15.Text = "6";
             button15.UseVisualStyleBackColor = true;
+            button15.Click += button15_Click;
             // 
             // button16
             // 
@@ -216,6 +227,7 @@
             button16.TabIndex = 15;
             button16.Text = "-";
             button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
             // 
             // button17
             // 
@@ -226,6 +238,7 @@
             button17.TabIndex = 16;
             button17.Text = "1";
             button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
             // 
             // button18
             // 
@@ -236,6 +249,7 @@
             button18.TabIndex = 17;
             button18.Text = "2";
             button18.UseVisualStyleBackColor = true;
+            button18.Click += button18_Click;
             // 
             // button19
             // 
@@ -246,6 +260,7 @@
             button19.TabIndex = 18;
             button19.Text = "3";
             button19.UseVisualStyleBackColor = true;
+            button19.Click += button19_Click;
             // 
             // button20
             // 
@@ -256,6 +271,7 @@
             button20.TabIndex = 19;
             button20.Text = "+";
             button20.UseVisualStyleBackColor = true;
+            button20.Click += button20_Click;
             // 
             // button21
             // 
@@ -276,6 +292,7 @@
             button22.TabIndex = 21;
             button22.Text = "0";
             button22.UseVisualStyleBackColor = true;
+            button22.Click += button22_Click;
             // 
             // button23
             // 
@@ -289,34 +306,95 @@
             // 
             // button24
             // 
+            button24.BackColor = System.Drawing.Color.LimeGreen;
             button24.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             button24.Location = new System.Drawing.Point(301, 644);
             button24.Name = "button24";
             button24.Size = new System.Drawing.Size(92, 68);
             button24.TabIndex = 23;
             button24.Text = "=";
-            button24.UseVisualStyleBackColor = true;
+            button24.UseVisualStyleBackColor = false;
+            button24.Click += button24_Click;
             // 
             // label1
             // 
-            label1.Location = new System.Drawing.Point(15, 95);
+            label1.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.Location = new System.Drawing.Point(15, 97);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(378, 70);
+            label1.Size = new System.Drawing.Size(378, 100);
             label1.TabIndex = 24;
-            label1.Click += label1_Click;
+            label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label2
             // 
-            label2.Location = new System.Drawing.Point(15, 25);
+            label2.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            label2.Location = new System.Drawing.Point(14, 51);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(378, 46);
             label2.TabIndex = 25;
+            label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.Location = new System.Drawing.Point(15, 206);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(52, 35);
+            label3.TabIndex = 26;
+            label3.Text = "MC";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(95, 206);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(52, 35);
+            label4.TabIndex = 27;
+            label4.Text = "MR";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.Location = new System.Drawing.Point(177, 206);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(54, 35);
+            label5.TabIndex = 28;
+            label5.Text = "M+";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label6.Location = new System.Drawing.Point(266, 206);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(47, 35);
+            label6.TabIndex = 29;
+            label6.Text = "M-";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label7.Location = new System.Drawing.Point(340, 206);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(50, 35);
+            label7.TabIndex = 30;
+            label7.Text = "MS";
             // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(402, 720);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button24);
@@ -347,6 +425,7 @@
             Name = "Form1";
             Text = "Calculator";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -377,5 +456,10 @@
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
