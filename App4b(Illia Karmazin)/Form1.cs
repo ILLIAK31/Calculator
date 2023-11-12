@@ -59,12 +59,12 @@ namespace App4b_Illia_Karmazin_
                 {
                     Program.full = Program.left + "+" + Program.current;
                     label2.Text = label1.Text + " + ";
-                    int result;
+                    double result;
                     DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(string), Program.full);
+                    table.Columns.Add("expression", typeof(double), Program.full);
                     DataRow row = table.NewRow();
                     table.Rows.Add(row);
-                    result = int.Parse((string)row["expression"]);
+                    result = (double)row["expression"];
                     label2.Text = result.ToString() + " + ";
                     Program.status = false;
                     Program.left = result.ToString();
@@ -81,12 +81,12 @@ namespace App4b_Illia_Karmazin_
                 {
                     Program.full = Program.left + "-" + Program.current;
                     label2.Text = label1.Text + " - ";
-                    int result;
+                    double result;
                     DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(string), Program.full);
+                    table.Columns.Add("expression", typeof(double), Program.full);
                     DataRow row = table.NewRow();
                     table.Rows.Add(row);
-                    result = int.Parse((string)row["expression"]);
+                    result = (double)row["expression"];
                     label2.Text = result.ToString() + " - ";
                     Program.status = false;
                     Program.left = result.ToString();
@@ -97,12 +97,12 @@ namespace App4b_Illia_Karmazin_
                 if (label2.Text != "")
                     Program.full += label2.Text[label2.Text.Length - 2] + Program.current;
                 label2.Text += Program.current;
-                int result;
+                double result;
                 DataTable table = new DataTable();
-                table.Columns.Add("expression", typeof(string), Program.full);
+                table.Columns.Add("expression", typeof(double), Program.full);
                 DataRow row = table.NewRow();
                 table.Rows.Add(row);
-                result = int.Parse((string)row["expression"]);
+                result = (double)row["expression"];
                 label1.Text = result.ToString();
                 label2.Text += " =";
                 Program.full = result.ToString();
