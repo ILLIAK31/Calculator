@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
+using System.Globalization;
 
 namespace App4b_Illia_Karmazin_
 {
@@ -22,7 +23,7 @@ namespace App4b_Illia_Karmazin_
         {
             if (label1.Text.Length < 16)
             {
-                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-')))
+                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-') || (label2.Text[label2.Text.Length - 2] == '*')))
                 {
                     Program.status = true;
                     label1.Text = "";
@@ -72,10 +73,12 @@ namespace App4b_Illia_Karmazin_
                     DataRow row = table.NewRow();
                     table.Rows.Add(row);
                     result = (double)row["expression"];
-                    label2.Text = result.ToString() + " + ";
+                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " + ";
                     Program.status = false;
-                    Program.left = result.ToString();
+                    Program.left = result.ToString(CultureInfo.InvariantCulture);
                 }
+                label1.Text = Program.left;
+                Program.point_status = false;
             }
             else if (func == "-")
             {
@@ -83,6 +86,7 @@ namespace App4b_Illia_Karmazin_
                 {
                     Program.full = Program.left + "-";
                     label2.Text = label1.Text + " - ";
+                    Program.status = false;
                 }
                 else
                 {
@@ -100,10 +104,12 @@ namespace App4b_Illia_Karmazin_
                     DataRow row = table.NewRow();
                     table.Rows.Add(row);
                     result = (double)row["expression"];
-                    label2.Text = result.ToString() + " - ";
+                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " - ";
                     Program.status = false;
-                    Program.left = result.ToString();
+                    Program.left = result.ToString(CultureInfo.InvariantCulture);
                 }
+                label1.Text = Program.left;
+                Program.point_status = false;
             }
             else if (func == "=")
             {
@@ -121,11 +127,12 @@ namespace App4b_Illia_Karmazin_
                     DataRow row = table.NewRow();
                     table.Rows.Add(row);
                     result = (double)row["expression"];
-                    label1.Text = result.ToString();
+                    label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     label2.Text += " =";
-                    Program.full = result.ToString();
-                    Program.left = Program.current = result.ToString();
+                    Program.full = result.ToString(CultureInfo.InvariantCulture);
+                    Program.left = Program.current = result.ToString(CultureInfo.InvariantCulture);
                 }
+                Program.point_status = true;
             }
             else if (func == "x")
             {
@@ -149,6 +156,58 @@ namespace App4b_Illia_Karmazin_
                 }
             }
             else if (func == "C")
+            {
+                Program.current = "";
+                Program.left = "";
+                label1.Text = "";
+                label2.Text = "";
+            }
+            else if (func == "CE")
+            {
+                Program.current = "0";
+                label1.Text = Program.current;
+            }
+            else if (func == ",")
+            {
+                if (label1.Text != "" && Program.point_status == false && label1.Text[label1.Text.Length - 1] != '.')
+                {
+                    label1.Text += ".";
+                    Program.current += ".";
+                    Program.point_status = true;
+                }
+            }
+            else if (func == "*")
+            {
+                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                {
+                    Program.full = Program.left + "*";
+                    label2.Text = label1.Text + " * ";
+                    Program.status = false;
+                }
+                else
+                {
+                    if (Program.multiplication_status == false)
+                    {
+                        Program.full = Program.current;
+                        Program.multiplication_status = true;
+                    }
+                    else
+                        Program.full = Program.left + "*" + Program.current;
+                    label2.Text = label1.Text + " * ";
+                    double result;
+                    DataTable table = new DataTable();
+                    table.Columns.Add("expression", typeof(double), Program.full);
+                    DataRow row = table.NewRow();
+                    table.Rows.Add(row);
+                    result = (double)row["expression"];
+                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " * ";
+                    Program.status = false;
+                    Program.left = result.ToString(CultureInfo.InvariantCulture);
+                }
+                label1.Text = Program.left;
+                Program.point_status = false;
+            }
+            else if (func == "*")
             {
                 //
             }
@@ -226,6 +285,26 @@ namespace App4b_Illia_Karmazin_
         private void button3_Click(object sender, EventArgs e)
         {
             GetFunction("C");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GetFunction("CE");
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            GetFunction(",");
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            GetFunction("*");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            GetFunction("/");
         }
     }
 }

@@ -81,6 +81,7 @@
             button2.TabIndex = 1;
             button2.Text = "CE";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -143,6 +144,7 @@
             button8.TabIndex = 7;
             button8.Text = "÷";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // button9
             // 
@@ -186,6 +188,7 @@
             button12.TabIndex = 11;
             button12.Text = "x";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // button13
             // 
@@ -305,6 +308,7 @@
             button23.TabIndex = 22;
             button23.Text = ",";
             button23.UseVisualStyleBackColor = true;
+            button23.Click += button23_Click;
             // 
             // button24
             // 
