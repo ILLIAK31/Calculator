@@ -8,6 +8,7 @@ namespace App4b_Illia_Karmazin_
 {
     internal static class Program
     {
+        public static List<double> memory = new List<double>();
         public static string left = "0", current = "" , full = "";
         public static bool status = false , minus_status = false , point_status , multiplication_status = false , div_status = false , math_status = false;
         /// <summary>

@@ -293,7 +293,64 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "%" && label1.Text != "")
             {
-                //
+                if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '+' || label2.Text[label2.Text.Length - 2] == '-'))
+                {
+                    double result = (double.Parse(label1.Text) * double.Parse(Program.left)) / 100;
+                    label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                    Program.current = result.ToString(CultureInfo.InvariantCulture);
+                    Program.math_status = true;
+                }
+                else if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '*' || label2.Text[label2.Text.Length - 2] == '/'))
+                {
+                    double result = double.Parse(label1.Text) / 100;
+                    label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                    Program.current = result.ToString(CultureInfo.InvariantCulture);
+                    Program.math_status = true;
+                }
+            }
+            else if (func == "M+" && label1.Text != "")
+            {
+                if (Program.memory.Count > 0)
+                {
+                    int index = Program.memory.Count - 1;
+                    Program.memory[index] += double.Parse(label1.Text);
+                    Program.math_status = true;
+                }
+                else
+                {
+                    Program.memory.Add(int.Parse(label1.Text));
+                    Program.math_status = true;
+                }
+            }
+            else if (func == "M-" && label1.Text != "")
+            {
+                if (Program.memory.Count > 0)
+                {
+                    int index = Program.memory.Count - 1;
+                    Program.memory[index] -= double.Parse(label1.Text);
+                    Program.math_status = true;
+                }
+                else
+                {
+                    Program.memory.Add(-(int.Parse(label1.Text)));
+                    Program.math_status = true;
+                }
+            }
+            else if (func == "MC")
+            {
+                Program.memory.Clear();
+                Program.math_status = true;
+            }
+            else if (func == "MR" && Program.memory.Count != 0)
+            {
+                int index = Program.memory.Count - 1;
+                Program.current = label1.Text = Program.memory[index].ToString(CultureInfo.InvariantCulture);
+                Program.math_status = true;
+            }
+            else if (func == "MS" && label1.Text != "")
+            {
+                Program.memory.Add(int.Parse(label1.Text));
+                Program.math_status = true;
             }
         }
         private void button22_Click(object sender, EventArgs e)
@@ -481,6 +538,42 @@ namespace App4b_Illia_Karmazin_
             {
                 GetFunction("%");
             }
+        }
+        private void label5_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("M+");
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("M-");
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("MC");
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("MR");
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            GetFunction("MS");
         }
     }
 }

@@ -355,6 +355,7 @@
             label3.Size = new System.Drawing.Size(52, 35);
             label3.TabIndex = 26;
             label3.Text = "MC";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
@@ -365,6 +366,7 @@
             label4.Size = new System.Drawing.Size(52, 35);
             label4.TabIndex = 27;
             label4.Text = "MR";
+            label4.Click += label4_Click;
             // 
             // label5
             // 
@@ -375,6 +377,7 @@
             label5.Size = new System.Drawing.Size(54, 35);
             label5.TabIndex = 28;
             label5.Text = "M+";
+            label5.Click += label5_Click;
             // 
             // label6
             // 
@@ -385,6 +388,7 @@
             label6.Size = new System.Drawing.Size(47, 35);
             label6.TabIndex = 29;
             label6.Text = "M-";
+            label6.Click += label6_Click;
             // 
             // label7
             // 
@@ -395,6 +399,7 @@
             label7.Size = new System.Drawing.Size(50, 35);
             label7.TabIndex = 30;
             label7.Text = "MS";
+            label7.Click += label7_Click;
             // 
             // Form1
             // 
