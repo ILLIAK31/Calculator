@@ -61,7 +61,7 @@ namespace App4b_Illia_Karmazin_
         }
         private void GetFunction(string func)
         {
-            if (func == "+")
+            if (func == "+" && label1.Text != "")
             {
                 if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                 {
@@ -86,7 +86,7 @@ namespace App4b_Illia_Karmazin_
                 label1.Text = Program.left;
                 Program.point_status = false;
             }
-            else if (func == "-")
+            else if (func == "-" && label1.Text != "")
             {
                 if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                 {
@@ -183,7 +183,7 @@ namespace App4b_Illia_Karmazin_
                     Program.point_status = true;
                 }
             }
-            else if (func == "*")
+            else if (func == "*" && label1.Text != "")
             {
                 if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                 {
@@ -214,7 +214,7 @@ namespace App4b_Illia_Karmazin_
                 label1.Text = Program.left;
                 Program.point_status = false;
             }
-            else if (func == "/")
+            else if (func == "/" && label1.Text != "")
             {
                 if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                 {
@@ -281,6 +281,17 @@ namespace App4b_Illia_Karmazin_
                 Program.math_status = true;
             }
             else if (func == "D" && label1.Text != "")
+            {
+                double result = double.Parse(label1.Text);
+                if (result != 0)
+                {
+                    result = 1 / result;
+                    label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                    Program.current = label1.Text;
+                    Program.math_status = true;
+                }
+            }
+            else if (func == "%" && label1.Text != "")
             {
                 //
             }
@@ -457,12 +468,18 @@ namespace App4b_Illia_Karmazin_
                 GetFunction("^");
             }
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
             {
                 GetFunction("D");
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("%");
             }
         }
     }
