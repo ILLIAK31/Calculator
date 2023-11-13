@@ -287,6 +287,7 @@
             button21.TabIndex = 20;
             button21.Text = "+/-";
             button21.UseVisualStyleBackColor = true;
+            button21.Click += button21_Click;
             // 
             // button22
             // 

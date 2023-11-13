@@ -9,7 +9,7 @@ namespace App4b_Illia_Karmazin_
     internal static class Program
     {
         public static string left = "0", current = "" , full = "";
-        public static bool status = false , minus_status = false , point_status , multiplication_status = false;
+        public static bool status = false , minus_status = false , point_status , multiplication_status = false , div_status = false;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

@@ -23,7 +23,7 @@ namespace App4b_Illia_Karmazin_
         {
             if (label1.Text.Length < 16)
             {
-                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-') || (label2.Text[label2.Text.Length - 2] == '*')))
+                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-') || (label2.Text[label2.Text.Length - 2] == '*') || (label2.Text[label2.Text.Length - 2] == '/')))
                 {
                     Program.status = true;
                     label1.Text = "";
@@ -207,7 +207,39 @@ namespace App4b_Illia_Karmazin_
                 label1.Text = Program.left;
                 Program.point_status = false;
             }
-            else if (func == "*")
+            else if (func == "/")
+            {
+                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                {
+                    Program.full = Program.left + "/";
+                    label2.Text = label1.Text + " / ";
+                    Program.status = false;
+                }
+                else
+                {
+                    if (Program.div_status == false)
+                    {
+                        Program.full = Program.current;
+                        Program.div_status = true;
+                    }
+                    else
+                        Program.full = Program.left + "/" + Program.current;
+                    label2.Text = label1.Text + " / ";
+                    double result;
+                    DataTable table = new DataTable();
+                    table.Columns.Add("expression", typeof(double), Program.full);
+                    DataRow row = table.NewRow();
+                    table.Rows.Add(row);
+                    result = (double)row["expression"];
+                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " / ";
+                    Program.status = false;
+                    Program.left = result.ToString(CultureInfo.InvariantCulture);
+                }
+                label1.Text = Program.left;
+                Program.current = label1.Text;
+                Program.point_status = false;
+            }
+            else if (func == "N")
             {
                 //
             }
@@ -305,6 +337,11 @@ namespace App4b_Illia_Karmazin_
         private void button8_Click(object sender, EventArgs e)
         {
             GetFunction("/");
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            GetFunction("N");
         }
     }
 }
