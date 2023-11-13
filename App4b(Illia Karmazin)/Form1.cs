@@ -28,6 +28,12 @@ namespace App4b_Illia_Karmazin_
                     Program.status = true;
                     label1.Text = "";
                 }
+                if (Program.status == false && Program.math_status == true)
+                {
+                    Program.math_status = false;
+                    Program.status = true;
+                    label1.Text = "";
+                }
                 if (Program.status == false && label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                 {
                     Program.left = "";
@@ -244,13 +250,13 @@ namespace App4b_Illia_Karmazin_
             {
                 if (label1.Text[0] != '-')
                 {
-                    string copy = "-"+label1.Text;
+                    string copy = "-" + label1.Text;
                     label1.Text = copy;
                 }
                 else
                 {
                     string copy = "";
-                    for (int i = 1; i < label1.Text.Length;++i)
+                    for (int i = 1; i < label1.Text.Length; ++i)
                     {
                         copy += label1.Text[i];
                     }
@@ -258,75 +264,137 @@ namespace App4b_Illia_Karmazin_
                 }
                 Program.current = label1.Text;
             }
+            else if (func == "Q" && label1.Text != "")
+            {
+                double result = double.Parse(label1.Text);
+                result = Math.Sqrt(result);
+                label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                Program.current = label1.Text;
+                Program.math_status = true;
+            }
+            else if (func == "^" && label1.Text != "")
+            {
+                double result = double.Parse(label1.Text);
+                result = Math.Pow(result, 2);
+                label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                Program.current = label1.Text;
+                Program.math_status = true;
+            }
+            else if (func == "D" && label1.Text != "")
+            {
+                //
+            }
         }
         private void button22_Click(object sender, EventArgs e)
         {
-            GetNumbers("0");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("0");
+            }
         }
 
         private void button17_Click(object sender, EventArgs e)
         {
-            GetNumbers("1");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("1");
+            }
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-            GetNumbers("2");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("2");
+            }
         }
 
         private void button19_Click(object sender, EventArgs e)
         {
-            GetNumbers("3");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("3");
+            }
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            GetNumbers("4");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("4");
+            }
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-            GetNumbers("5");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("5");
+            }
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
-            GetNumbers("6");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("6");
+            }
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            GetNumbers("7");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("7");
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            GetNumbers("8");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("8");
+            }
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            GetNumbers("9");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetNumbers("9");
+            }
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
-            GetFunction("+");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("+");
+            }
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
-            GetFunction("=");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("=");
+            }
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
-            GetFunction("-");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("-");
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            GetFunction("x");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("x");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -336,27 +404,66 @@ namespace App4b_Illia_Karmazin_
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GetFunction("CE");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("CE");
+            }
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            GetFunction(",");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction(",");
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-            GetFunction("*");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("*");
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            GetFunction("/");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("/");
+            }
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-            GetFunction("N");
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("N");
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("Q");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("^");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (label1.Text != "Infinity" && label1.Text != "NaN" && label1.Text != "-Infinity" && label1.Text != "-NaN")
+            {
+                GetFunction("D");
+            }
         }
     }
 }
