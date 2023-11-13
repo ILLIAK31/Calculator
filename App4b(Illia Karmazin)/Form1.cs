@@ -158,7 +158,8 @@ namespace App4b_Illia_Karmazin_
             else if (func == "C")
             {
                 Program.current = "";
-                Program.left = "";
+                Program.left = "0";
+                Program.status = Program.minus_status = Program.multiplication_status = Program.point_status = Program.div_status = false;
                 label1.Text = "";
                 label2.Text = "";
             }
@@ -239,9 +240,23 @@ namespace App4b_Illia_Karmazin_
                 Program.current = label1.Text;
                 Program.point_status = false;
             }
-            else if (func == "N")
+            else if (func == "N" && label1.Text != "")
             {
-                //
+                if (label1.Text[0] != '-')
+                {
+                    string copy = "-"+label1.Text;
+                    label1.Text = copy;
+                }
+                else
+                {
+                    string copy = "";
+                    for (int i = 1; i < label1.Text.Length;++i)
+                    {
+                        copy += label1.Text[i];
+                    }
+                    label1.Text = copy;
+                }
+                Program.current = label1.Text;
             }
         }
         private void button22_Click(object sender, EventArgs e)
