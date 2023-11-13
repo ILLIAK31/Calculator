@@ -22,8 +22,14 @@ namespace App4b_Illia_Karmazin_
         {
             if (label1.Text.Length < 16)
             {
-                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+')|| (label2.Text[label2.Text.Length - 2] == '-')))
+                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-')))
                 {
+                    Program.status = true;
+                    label1.Text = "";
+                }
+                if (Program.status == false && label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                {
+                    Program.left = "";
                     Program.status = true;
                     label1.Text = "";
                 }
@@ -54,6 +60,7 @@ namespace App4b_Illia_Karmazin_
                 {
                     Program.full = Program.left + "+";
                     label2.Text = label1.Text + " + ";
+                    Program.status = false;
                 }
                 else
                 {
@@ -100,19 +107,50 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "=")
             {
-                if (label2.Text != "")
-                    Program.full += label2.Text[label2.Text.Length - 2] + Program.current;
-                label2.Text += Program.current;
-                double result;
-                DataTable table = new DataTable();
-                table.Columns.Add("expression", typeof(double), Program.full);
-                DataRow row = table.NewRow();
-                table.Rows.Add(row);
-                result = (double)row["expression"];
-                label1.Text = result.ToString();
-                label2.Text += " =";
-                Program.full = result.ToString();
-                Program.left = Program.current = result.ToString();
+                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=') { }
+                else
+                {
+                    if (label2.Text != "")
+                        Program.full += label2.Text[label2.Text.Length - 2] + Program.current;
+                    else
+                        Program.full += Program.left + "+" + Program.current;
+                    label2.Text += Program.current;
+                    double result;
+                    DataTable table = new DataTable();
+                    table.Columns.Add("expression", typeof(double), Program.full);
+                    DataRow row = table.NewRow();
+                    table.Rows.Add(row);
+                    result = (double)row["expression"];
+                    label1.Text = result.ToString();
+                    label2.Text += " =";
+                    Program.full = result.ToString();
+                    Program.left = Program.current = result.ToString();
+                }
+            }
+            else if (func == "x")
+            {
+                if (Program.current != "")
+                {
+                    if (Program.current.Length == 1)
+                    {
+                        Program.current = "0";
+                        label1.Text = Program.current;
+                    }
+                    else
+                    {
+                        string copy = Program.current;
+                        Program.current = "";
+                        for (int i = 0; i < copy.Length - 1; ++i)
+                        {
+                            Program.current += copy[i];
+                            label1.Text = Program.current;
+                        }
+                    }
+                }
+            }
+            else if (func == "C")
+            {
+                //
             }
         }
         private void button22_Click(object sender, EventArgs e)
@@ -178,6 +216,16 @@ namespace App4b_Illia_Karmazin_
         private void button16_Click(object sender, EventArgs e)
         {
             GetFunction("-");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            GetFunction("x");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            GetFunction("C");
         }
     }
 }
