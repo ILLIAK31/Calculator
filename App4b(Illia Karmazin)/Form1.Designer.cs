@@ -350,6 +350,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.ForeColor = System.Drawing.Color.Gray;
             label3.Location = new System.Drawing.Point(15, 206);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(52, 35);
@@ -361,6 +362,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.ForeColor = System.Drawing.Color.Gray;
             label4.Location = new System.Drawing.Point(95, 206);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(52, 35);

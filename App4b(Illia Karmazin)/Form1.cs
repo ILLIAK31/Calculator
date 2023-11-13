@@ -271,6 +271,7 @@ namespace App4b_Illia_Karmazin_
                 label1.Text = result.ToString(CultureInfo.InvariantCulture);
                 Program.current = label1.Text;
                 Program.math_status = true;
+                Program.status = false;
             }
             else if (func == "^" && label1.Text != "")
             {
@@ -279,6 +280,7 @@ namespace App4b_Illia_Karmazin_
                 label1.Text = result.ToString(CultureInfo.InvariantCulture);
                 Program.current = label1.Text;
                 Program.math_status = true;
+                Program.status = false;
             }
             else if (func == "D" && label1.Text != "")
             {
@@ -289,6 +291,7 @@ namespace App4b_Illia_Karmazin_
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     Program.current = label1.Text;
                     Program.math_status = true;
+                    Program.status = false;
                 }
             }
             else if (func == "%" && label1.Text != "")
@@ -299,6 +302,7 @@ namespace App4b_Illia_Karmazin_
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     Program.current = result.ToString(CultureInfo.InvariantCulture);
                     Program.math_status = true;
+                    Program.status = false;
                 }
                 else if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '*' || label2.Text[label2.Text.Length - 2] == '/'))
                 {
@@ -306,6 +310,7 @@ namespace App4b_Illia_Karmazin_
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     Program.current = result.ToString(CultureInfo.InvariantCulture);
                     Program.math_status = true;
+                    Program.status = false;
                 }
             }
             else if (func == "M+" && label1.Text != "")
@@ -315,12 +320,16 @@ namespace App4b_Illia_Karmazin_
                     int index = Program.memory.Count - 1;
                     Program.memory[index] += double.Parse(label1.Text);
                     Program.math_status = true;
+                    Program.status = false;
                 }
                 else
                 {
                     Program.memory.Add(int.Parse(label1.Text));
                     Program.math_status = true;
+                    Program.status = false;
                 }
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
             }
             else if (func == "M-" && label1.Text != "")
             {
@@ -329,28 +338,39 @@ namespace App4b_Illia_Karmazin_
                     int index = Program.memory.Count - 1;
                     Program.memory[index] -= double.Parse(label1.Text);
                     Program.math_status = true;
+                    Program.status = false;
                 }
                 else
                 {
                     Program.memory.Add(-(int.Parse(label1.Text)));
                     Program.math_status = true;
+                    Program.status = false;
                 }
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
             }
             else if (func == "MC")
             {
                 Program.memory.Clear();
                 Program.math_status = true;
+                Program.status = false;
+                label3.ForeColor = Color.Gray;
+                label4.ForeColor = Color.Gray;
             }
             else if (func == "MR" && Program.memory.Count != 0)
             {
                 int index = Program.memory.Count - 1;
                 Program.current = label1.Text = Program.memory[index].ToString(CultureInfo.InvariantCulture);
                 Program.math_status = true;
+                Program.status = false;
             }
             else if (func == "MS" && label1.Text != "")
             {
                 Program.memory.Add(int.Parse(label1.Text));
                 Program.math_status = true;
+                Program.status = false;
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
             }
         }
         private void button22_Click(object sender, EventArgs e)
