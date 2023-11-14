@@ -20,6 +20,7 @@ namespace App4b_Illia_Karmazin_
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            label1.Text = Program.current;
         }
         private void GetNumbers(string num)
         {
@@ -56,7 +57,7 @@ namespace App4b_Illia_Karmazin_
                     label1.Text += num;
             }
             if (label1.Text.Length > 12 && label1.Text.Length < 16)
-                label1.Font = new System.Drawing.Font("Segoe UI", label1.Font.Size - 2);
+                label1.Font = new System.Drawing.Font("Segoe UI", label1.Font.Size - 1);
             Program.current = label1.Text;
 
         }
@@ -64,84 +65,115 @@ namespace App4b_Illia_Karmazin_
         {
             if (func == "+" && label1.Text != "")
             {
-                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                try
                 {
-                    Program.full = Program.left + "+";
-                    label2.Text = label1.Text + " + ";
-                    Program.status = false;
+                    if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                    {
+                        Program.full = Program.left + "+";
+                        label2.Text = label1.Text + " + ";
+                        Program.status = false;
+                    }
+                    else
+                    {
+                        Program.full = Program.left + "+" + Program.current;
+                        label2.Text = label1.Text + " + ";
+                        double result;
+                        DataTable table = new DataTable();
+                        table.Columns.Add("expression", typeof(double), Program.full);
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+                        result = (double)row["expression"];
+                        label2.Text = result.ToString(CultureInfo.InvariantCulture) + " + ";
+                        Program.status = false;
+                        Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    }
+                    label1.Text = Program.left;
+                    Program.point_status = false;
+                    Program.current = label1.Text;
                 }
-                else
+                catch(Exception e)
                 {
-                    Program.full = Program.left + "+" + Program.current;
-                    label2.Text = label1.Text + " + ";
-                    double result;
-                    DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(double), Program.full);
-                    DataRow row = table.NewRow();
-                    table.Rows.Add(row);
-                    result = (double)row["expression"];
-                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " + ";
-                    Program.status = false;
-                    Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    //
                 }
-                label1.Text = Program.left;
-                Program.point_status = false;
-                Program.current = label1.Text;
             }
             else if (func == "-" && label1.Text != "")
             {
-                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                try
                 {
-                    Program.full = Program.left + "-";
-                    label2.Text = label1.Text + " - ";
-                    Program.status = false;
-                }
-                else
-                {
-                    if (Program.minus_status == false)
+                    if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                     {
-                        Program.full = Program.current;
-                        Program.minus_status = true;
+                        Program.full = Program.left + "-";
+                        label2.Text = label1.Text + " - ";
+                        Program.status = false;
                     }
                     else
-                        Program.full = Program.left + "-" + Program.current;
-                    label2.Text = label1.Text + " - ";
-                    double result;
-                    DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(double), Program.full);
-                    DataRow row = table.NewRow();
-                    table.Rows.Add(row);
-                    result = (double)row["expression"];
-                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " - ";
-                    Program.status = false;
-                    Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    {
+                        if (Program.minus_status == false)
+                        {
+                            Program.full = Program.current;
+                            Program.minus_status = true;
+                        }
+                        else
+                            Program.full = Program.left + "-" + Program.current;
+                        label2.Text = label1.Text + " - ";
+                        double result;
+                        DataTable table = new DataTable();
+                        table.Columns.Add("expression", typeof(double), Program.full);
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+                        result = (double)row["expression"];
+                        label2.Text = result.ToString(CultureInfo.InvariantCulture) + " - ";
+                        Program.status = false;
+                        Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    }
+                    label1.Text = Program.left;
+                    Program.point_status = false;
+                    Program.current = label1.Text;
                 }
-                label1.Text = Program.left;
-                Program.point_status = false;
-                Program.current = label1.Text;
+                catch (Exception e)
+                {
+                    //
+                }
             }
             else if (func == "=")
             {
-                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=') { }
-                else
+                try
                 {
-                    if (label2.Text != "")
-                        Program.full += label2.Text[label2.Text.Length - 2] + Program.current;
+                    if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=') { }
                     else
-                        Program.full += Program.left + "+" + Program.current;
-                    label2.Text += Program.current;
-                    double result;
-                    DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(double), Program.full);
-                    DataRow row = table.NewRow();
-                    table.Rows.Add(row);
-                    result = (double)row["expression"];
-                    label1.Text = result.ToString(CultureInfo.InvariantCulture);
-                    label2.Text += " =";
-                    Program.full = result.ToString(CultureInfo.InvariantCulture);
-                    Program.left = Program.current = result.ToString(CultureInfo.InvariantCulture);
+                    {
+                        if (label2.Text != "")
+                            Program.full += label2.Text[label2.Text.Length - 2] + Program.current;
+                        else
+                            Program.full += Program.left + "+" + Program.current;
+                        label2.Text += Program.current;
+                        string copy = "";
+                        copy += Program.full[0];
+                        for (int i = 1; i < Program.full.Length; ++i)
+                        {
+                            if (Program.full[i] == '*' && Program.full[i - 1] == '*') { }
+                            else
+                            {
+                                copy += Program.full[i];
+                            }
+                        }
+                        double result;
+                        DataTable table = new DataTable();
+                        table.Columns.Add("expression", typeof(double), Program.full);
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+                        result = (double)row["expression"];
+                        label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                        label2.Text += " =";
+                        Program.full = result.ToString(CultureInfo.InvariantCulture);
+                        Program.left = Program.current = result.ToString(CultureInfo.InvariantCulture);
+                    }
+                    Program.point_status = true;
                 }
-                Program.point_status = true;
+                catch (Exception e)
+                {
+                    //
+                }
             }
             else if (func == "x")
             {
@@ -188,68 +220,82 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "*" && label1.Text != "")
             {
-                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                try
                 {
-                    Program.full = Program.left + "*";
-                    label2.Text = label1.Text + " * ";
-                    Program.status = false;
-                }
-                else
-                {
-                    if (Program.multiplication_status == false)
+                    if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                     {
-                        Program.full = Program.current;
-                        Program.multiplication_status = true;
+                        Program.full = Program.left + "*";
+                        label2.Text = label1.Text + " * ";
+                        Program.status = false;
                     }
                     else
-                        Program.full = Program.left + "*" + Program.current;
-                    label2.Text = label1.Text + " * ";
-                    double result;
-                    DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(double), Program.full);
-                    DataRow row = table.NewRow();
-                    table.Rows.Add(row);
-                    result = (double)row["expression"];
-                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " * ";
-                    Program.status = false;
-                    Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    {
+                        if (Program.multiplication_status == false)
+                        {
+                            Program.full = Program.current;
+                            Program.multiplication_status = true;
+                        }
+                        else
+                            Program.full = Program.left + "*" + Program.current;
+                        label2.Text = label1.Text + " * ";
+                        double result;
+                        DataTable table = new DataTable();
+                        table.Columns.Add("expression", typeof(double), Program.full);
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+                        result = (double)row["expression"];
+                        label2.Text = result.ToString(CultureInfo.InvariantCulture) + " * ";
+                        Program.status = false;
+                        Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    }
+                    label1.Text = Program.left;
+                    Program.point_status = false;
+                    Program.current = label1.Text;
                 }
-                label1.Text = Program.left;
-                Program.point_status = false;
-                Program.current = label1.Text;
+                catch (Exception e)
+                {
+                    //
+                }
             }
             else if (func == "/" && label1.Text != "")
             {
-                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+                try
                 {
-                    Program.full = Program.left + "/";
-                    label2.Text = label1.Text + " / ";
-                    Program.status = false;
-                }
-                else
-                {
-                    if (Program.div_status == false)
+                    if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
                     {
-                        Program.full = Program.current;
-                        Program.div_status = true;
+                        Program.full = Program.left + "/";
+                        label2.Text = label1.Text + " / ";
+                        Program.status = false;
                     }
                     else
-                        Program.full = Program.left + "/" + Program.current;
-                    label2.Text = label1.Text + " / ";
-                    double result;
-                    DataTable table = new DataTable();
-                    table.Columns.Add("expression", typeof(double), Program.full);
-                    DataRow row = table.NewRow();
-                    table.Rows.Add(row);
-                    result = (double)row["expression"];
-                    label2.Text = result.ToString(CultureInfo.InvariantCulture) + " / ";
-                    Program.status = false;
-                    Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    {
+                        if (Program.div_status == false)
+                        {
+                            Program.full = Program.current;
+                            Program.div_status = true;
+                        }
+                        else
+                            Program.full = Program.left + "/" + Program.current;
+                        label2.Text = label1.Text + " / ";
+                        double result;
+                        DataTable table = new DataTable();
+                        table.Columns.Add("expression", typeof(double), Program.full);
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+                        result = (double)row["expression"];
+                        label2.Text = result.ToString(CultureInfo.InvariantCulture) + " / ";
+                        Program.status = false;
+                        Program.left = result.ToString(CultureInfo.InvariantCulture);
+                    }
+                    label1.Text = Program.left;
+                    Program.current = label1.Text;
+                    Program.point_status = false;
+                    Program.current = label1.Text;
                 }
-                label1.Text = Program.left;
-                Program.current = label1.Text;
-                Program.point_status = false;
-                Program.current = label1.Text;
+                catch (Exception e)
+                {
+                    //
+                }
             }
             else if (func == "N" && label1.Text != "")
             {
@@ -271,51 +317,79 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "Q" && label1.Text != "")
             {
-                double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
-                result = Math.Sqrt(result);
-                label1.Text = result.ToString(CultureInfo.InvariantCulture);
-                Program.current = label1.Text;
-                Program.math_status = true;
-                Program.status = false;
-            }
-            else if (func == "^" && label1.Text != "")
-            {
-                double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
-                result = Math.Pow(result, 2);
-                label1.Text = result.ToString(CultureInfo.InvariantCulture);
-                Program.current = label1.Text;
-                Program.math_status = true;
-                Program.status = false;
-            }
-            else if (func == "D" && label1.Text != "")
-            {
-                double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
-                if (result != 0)
+                try
                 {
-                    result = 1 / result;
+                    double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    result = Math.Sqrt(result);
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     Program.current = label1.Text;
                     Program.math_status = true;
                     Program.status = false;
                 }
-            }
-            else if (func == "%" && label1.Text != "")
-            {
-                if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '+' || label2.Text[label2.Text.Length - 2] == '-'))
+                catch (Exception e)
                 {
-                    double result = (double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture) * double.Parse(Program.left)) / 100;
+                    //
+                }
+            }
+            else if (func == "^" && label1.Text != "")
+            {
+                try
+                {
+                    double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    result = Math.Pow(result, 2);
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
-                    Program.current = result.ToString(CultureInfo.InvariantCulture);
+                    Program.current = label1.Text;
                     Program.math_status = true;
                     Program.status = false;
                 }
-                else if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '*' || label2.Text[label2.Text.Length - 2] == '/'))
+                catch (Exception e)
                 {
-                    double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture) / 100;
-                    label1.Text = result.ToString(CultureInfo.InvariantCulture);
-                    Program.current = result.ToString(CultureInfo.InvariantCulture);
-                    Program.math_status = true;
-                    Program.status = false;
+                    //
+                }
+            }
+            else if (func == "D" && label1.Text != "")
+            {
+                try
+                {
+                    double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    if (result != 0)
+                    {
+                        result = 1 / result;
+                        label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                        Program.current = label1.Text;
+                        Program.math_status = true;
+                        Program.status = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    //
+                }
+            }
+            else if (func == "%" && label1.Text != "")
+            {
+                try
+                {
+                    if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '+' || label2.Text[label2.Text.Length - 2] == '-'))
+                    {
+                        double result = (double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture) * double.Parse(Program.left)) / 100;
+                        label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                        Program.current = result.ToString(CultureInfo.InvariantCulture);
+                        Program.math_status = true;
+                        Program.status = false;
+                    }
+                    else if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '*' || label2.Text[label2.Text.Length - 2] == '/'))
+                    {
+                        double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture) / 100;
+                        label1.Text = result.ToString(CultureInfo.InvariantCulture);
+                        Program.current = result.ToString(CultureInfo.InvariantCulture);
+                        Program.math_status = true;
+                        Program.status = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    //
                 }
             }
             else if (func == "M+" && label1.Text != "")
