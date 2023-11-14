@@ -57,7 +57,7 @@ namespace App4b_Illia_Karmazin_
                     label1.Text += num;
             }
             if (label1.Text.Length > 12 && label1.Text.Length < 16)
-                label1.Font = new System.Drawing.Font("Segoe UI", label1.Font.Size - 1);
+                label1.Font = new System.Drawing.Font("Segoe UI", label1.Font.Size - 2);
             Program.current = label1.Text;
 
         }
