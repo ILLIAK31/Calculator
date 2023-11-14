@@ -18,46 +18,47 @@ namespace App4b_Illia_Karmazin_
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
         private void GetNumbers(string num)
         {
-            if (label1.Text.Length < 16)
+
+            if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-') || (label2.Text[label2.Text.Length - 2] == '*') || (label2.Text[label2.Text.Length - 2] == '/')))
             {
-                if (Program.status == false && label2.Text != "" && ((label2.Text[label2.Text.Length - 2] == '+') || (label2.Text[label2.Text.Length - 2] == '-') || (label2.Text[label2.Text.Length - 2] == '*') || (label2.Text[label2.Text.Length - 2] == '/')))
-                {
-                    Program.status = true;
-                    label1.Text = "";
-                }
-                if (Program.status == false && Program.math_status == true)
-                {
-                    Program.math_status = false;
-                    Program.status = true;
-                    label1.Text = "";
-                }
-                if (Program.status == false && label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
-                {
-                    Program.left = "";
-                    Program.status = true;
-                    label1.Text = "";
-                }
-                if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
-                {
-                    label1.Text = "";
-                    label2.Text = "";
-                }
-                if (num == "0" && label1.Text == "0")
+                Program.status = true;
+                label1.Text = "";
+            }
+            if (Program.status == false && Program.math_status == true)
+            {
+                Program.math_status = false;
+                Program.status = true;
+                label1.Text = "";
+            }
+            if (Program.status == false && label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+            {
+                Program.left = "";
+                Program.status = true;
+                label1.Text = "";
+            }
+            if (label2.Text != "" && label2.Text[label2.Text.Length - 1] == '=')
+            {
+                label1.Text = "";
+                label2.Text = "";
+            }
+            if (num == "0" && label1.Text == "0")
+                label1.Text = num;
+            else
+            {
+                if (num != "0" && label1.Text == "0")
                     label1.Text = num;
                 else
-                {
-                    if (num != "0" && label1.Text == "0")
-                        label1.Text = num;
-                    else
-                        label1.Text += num;
-                }
-                if (label1.Text.Length > 12 && label1.Text.Length < 16)
-                    label1.Font = new System.Drawing.Font("Segoe UI", label1.Font.Size - 2);
-                Program.current = label1.Text;
+                    label1.Text += num;
             }
+            if (label1.Text.Length > 12 && label1.Text.Length < 16)
+                label1.Font = new System.Drawing.Font("Segoe UI", label1.Font.Size - 2);
+            Program.current = label1.Text;
+
         }
         private void GetFunction(string func)
         {
@@ -85,6 +86,7 @@ namespace App4b_Illia_Karmazin_
                 }
                 label1.Text = Program.left;
                 Program.point_status = false;
+                Program.current = label1.Text;
             }
             else if (func == "-" && label1.Text != "")
             {
@@ -116,6 +118,7 @@ namespace App4b_Illia_Karmazin_
                 }
                 label1.Text = Program.left;
                 Program.point_status = false;
+                Program.current = label1.Text;
             }
             else if (func == "=")
             {
@@ -213,6 +216,7 @@ namespace App4b_Illia_Karmazin_
                 }
                 label1.Text = Program.left;
                 Program.point_status = false;
+                Program.current = label1.Text;
             }
             else if (func == "/" && label1.Text != "")
             {
@@ -245,6 +249,7 @@ namespace App4b_Illia_Karmazin_
                 label1.Text = Program.left;
                 Program.current = label1.Text;
                 Program.point_status = false;
+                Program.current = label1.Text;
             }
             else if (func == "N" && label1.Text != "")
             {
@@ -266,7 +271,7 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "Q" && label1.Text != "")
             {
-                double result = double.Parse(label1.Text);
+                double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
                 result = Math.Sqrt(result);
                 label1.Text = result.ToString(CultureInfo.InvariantCulture);
                 Program.current = label1.Text;
@@ -275,7 +280,7 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "^" && label1.Text != "")
             {
-                double result = double.Parse(label1.Text);
+                double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
                 result = Math.Pow(result, 2);
                 label1.Text = result.ToString(CultureInfo.InvariantCulture);
                 Program.current = label1.Text;
@@ -284,7 +289,7 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "D" && label1.Text != "")
             {
-                double result = double.Parse(label1.Text);
+                double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
                 if (result != 0)
                 {
                     result = 1 / result;
@@ -298,7 +303,7 @@ namespace App4b_Illia_Karmazin_
             {
                 if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '+' || label2.Text[label2.Text.Length - 2] == '-'))
                 {
-                    double result = (double.Parse(label1.Text) * double.Parse(Program.left)) / 100;
+                    double result = (double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture) * double.Parse(Program.left)) / 100;
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     Program.current = result.ToString(CultureInfo.InvariantCulture);
                     Program.math_status = true;
@@ -306,7 +311,7 @@ namespace App4b_Illia_Karmazin_
                 }
                 else if (label2.Text != "" && (label2.Text[label2.Text.Length - 2] == '*' || label2.Text[label2.Text.Length - 2] == '/'))
                 {
-                    double result = double.Parse(label1.Text) / 100;
+                    double result = double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     label1.Text = result.ToString(CultureInfo.InvariantCulture);
                     Program.current = result.ToString(CultureInfo.InvariantCulture);
                     Program.math_status = true;
@@ -318,13 +323,13 @@ namespace App4b_Illia_Karmazin_
                 if (Program.memory.Count > 0)
                 {
                     int index = Program.memory.Count - 1;
-                    Program.memory[index] += double.Parse(label1.Text);
+                    Program.memory[index] += double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
                     Program.math_status = true;
                     Program.status = false;
                 }
                 else
                 {
-                    Program.memory.Add(int.Parse(label1.Text));
+                    Program.memory.Add(int.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture));
                     Program.math_status = true;
                     Program.status = false;
                 }
@@ -336,13 +341,13 @@ namespace App4b_Illia_Karmazin_
                 if (Program.memory.Count > 0)
                 {
                     int index = Program.memory.Count - 1;
-                    Program.memory[index] -= double.Parse(label1.Text);
+                    Program.memory[index] -= double.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture);
                     Program.math_status = true;
                     Program.status = false;
                 }
                 else
                 {
-                    Program.memory.Add(-(int.Parse(label1.Text)));
+                    Program.memory.Add(-(int.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture)));
                     Program.math_status = true;
                     Program.status = false;
                 }
@@ -366,7 +371,7 @@ namespace App4b_Illia_Karmazin_
             }
             else if (func == "MS" && label1.Text != "")
             {
-                Program.memory.Add(int.Parse(label1.Text));
+                Program.memory.Add(int.Parse(label1.Text, System.Globalization.CultureInfo.InvariantCulture));
                 Program.math_status = true;
                 Program.status = false;
                 label3.ForeColor = Color.Black;

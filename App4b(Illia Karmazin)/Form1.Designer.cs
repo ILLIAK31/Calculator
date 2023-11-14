@@ -329,7 +329,7 @@
             // 
             // label1
             // 
-            label1.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label1.Location = new System.Drawing.Point(15, 97);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(378, 100);
